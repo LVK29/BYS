@@ -1,0 +1,38 @@
+package com.tw.bookYourShow.model;
+
+import java.time.ZonedDateTime;
+
+import org.springframework.http.HttpStatus;
+
+/*
+ * Custom error msg attributes
+ */
+public class ErrorMessage {
+	private final String message;
+	private final HttpStatus httpStatus;
+	private final ZonedDateTime timestamp;
+
+	public ErrorMessage(String message, HttpStatus httpStatus, ZonedDateTime timestamp) {
+		this.message = message;
+		this.httpStatus = httpStatus;
+		this.timestamp = timestamp;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public HttpStatus getHttpStatus() {
+		return httpStatus;
+	}
+
+	public ZonedDateTime getTimestamp() {
+		return timestamp;
+	}
+
+	@Override
+	public String toString() {
+		return "ErrorMessage [message=" + message + ", httpStatus=" + httpStatus + ", timestamp=" + timestamp + "]";
+	}
+
+}
