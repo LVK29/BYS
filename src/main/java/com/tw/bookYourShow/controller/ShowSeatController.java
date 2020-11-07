@@ -13,13 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tw.bookYourShow.dto.ShowSeatDTO;
 import com.tw.bookYourShow.facade.ShowSeatFacade;
-import com.tw.bookYourShow.model.ShowSeat;
-import com.tw.bookYourShow.repository.MovieRepository;
-import com.tw.bookYourShow.repository.MovieShowRepository;
-import com.tw.bookYourShow.repository.ShowSeatRepository;
-import com.tw.bookYourShow.repository.TheaterAudiRepository;
-import com.tw.bookYourShow.repository.TheaterRepository;
-import com.tw.bookYourShow.service.CommonUtils;
 
 /**
  * Controller used for creating showSeats for a audi and movieShow
@@ -60,16 +53,7 @@ public class ShowSeatController {
 	@RequestMapping(value = "/admin/theaterAudi/{theaterAudiId}/audiSeat/{audiSeatId}/showSeat/{id}", method = RequestMethod.GET)
 	public ShowSeatDTO getShowSeat(@PathVariable int id) {
 		return showSeatFacade.getShowSeat(id);
-//		ShowSeat showSeat = showSeatRepository.findById(id).get();
-//		ShowSeatDTO showSeatDTO = new ShowSeatDTO();
-//		showSeatDTO.setId(showSeat.getId());
-//		showSeatDTO.setAudiId(showSeat.getAudiSeat().getTheaterAudi().getId());
-//		showSeatDTO.setAudiSeatId(showSeat.getAudiSeat().getId());
-//		showSeatDTO.setMovieShowId(showSeat.getMovieShow().getId());
-//		showSeatDTO.setPrice(showSeat.getPrice());
-//		showSeatDTO.setShowDate(showSeat.getShowDate().toString());
-//		showSeatDTO.setShowStatus(showSeat.getShowStatus().toString());
-//		return showSeatDTO;
+
 
 	}
 
@@ -83,11 +67,7 @@ public class ShowSeatController {
 	@RequestMapping(value = "/admin/theaterAudi/{theaterAudiId}/audiSeat/{audiSeatId}/showSeat/{id}", method = RequestMethod.PUT)
 	public void updateShowSeat(@PathVariable int id, @RequestBody ShowSeatDTO updatedShowSeatDto) {
 		showSeatFacade.updateShowSeat(updatedShowSeatDto, id);
-//		Booking booking = bookingRepository.findById(id).get();
-//		booking.setBookingDate(updatedBooking.getBookingDate());
-//		booking.setBookingTime(updatedBooking.getBookingTime());
-//		booking.setShowSeats(updatedBooking.getShowSeats());
-//		bookingRepository.save(booking);
+
 	}
 
 	/**
