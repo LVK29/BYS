@@ -17,9 +17,6 @@ public class AudiSeat {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
-//	@OneToMany//(cascade = {CascadeType.ALL})
-//	private List<ShowSeat> showSeat = new ArrayList<>();
-
 	private String rowNumber;
 
 	private String seatNumber;
@@ -27,7 +24,6 @@ public class AudiSeat {
 	@ManyToOne
 	private TheaterAudi theaterAudi;
 
-	// TODO lvk
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "audiSeat", orphanRemoval = true)
 	private List<ShowSeat> showSeats = new ArrayList<>();
 
@@ -54,7 +50,6 @@ public class AudiSeat {
 		return id;
 	}
 
- 
 	public String getRowNumber() {
 		return rowNumber;
 	}

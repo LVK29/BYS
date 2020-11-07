@@ -31,9 +31,6 @@ public class MovieShow {
 
 	@ManyToOne
 	private TheaterAudi theaterAudi;
-
-//	@OneToMany(cascade = { CascadeType.ALL })
-//	private List<Booking> bookings = new ArrayList<>();
 	
 	@OneToMany(cascade = { CascadeType.ALL },mappedBy ="movieShow",orphanRemoval = true )
 	private List<ShowSeat> showSeats = new ArrayList<>();

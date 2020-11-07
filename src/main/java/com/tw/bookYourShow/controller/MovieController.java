@@ -24,62 +24,6 @@ public class MovieController {
 	@Autowired
 	MovieFacade movieFacade;
 
-//	@RequestMapping(value = "/createTheater", method = RequestMethod.POST)
-//	public void createTheater(@RequestBody TheaterDTO theaterDTO) throws ParseException {
-//		theaterDTO.getAddress();
-//		Theater theater = new Theater();
-//		theater.setAddress("Mantri Mall");
-//		theater.setName("Inox");
-//		theater.setRating("5");
-//
-//		// set theater audi
-//		List<TheaterAudi> audiList = new ArrayList<TheaterAudi>();
-//		TheaterAudi audi = new TheaterAudi();
-//		audi.setAudiName("Audi 5");
-//
-//		List<AudiSeat> audiSeats = new ArrayList<AudiSeat>();
-//
-//		AudiSeat audiSeat = new AudiSeat();
-//		audiSeat.setRowNumber("A");
-//		audiSeat.setSeatNumber("3");
-//
-//		audiSeat.setSeats(null); // showSeats will be null when creating a new audi
-//		audiSeats.add(audiSeat);
-//		audi.setAudiSeat(audiSeats);
-//
-//		// add audi list to theater
-//		List<MovieShow> movieShowList = new ArrayList<MovieShow>();
-//
-//		MovieShow movieShow = new MovieShow();
-//		Date startTime = getTimeFromString("10:15:00");
-//		Date endTime = getTimeFromString("12:00:00");
-//		movieShow.setTimingFrom(startTime);
-//		movieShow.setTimingTo(endTime);
-//		movieShowList.add(movieShow);
-//
-//		MovieShow movieShow2 = new MovieShow();
-//		Date startTime2 = getTimeFromString("12:15:00");
-//		Date endTime2 = getTimeFromString("14:30:00");
-//		movieShow2.setTimingFrom(startTime2);
-//		movieShow.setTimingTo(endTime2);
-//		movieShowList.add(movieShow2);
-//
-//		MovieShow movieShow3 = new MovieShow();
-//		Date startTime3 = getTimeFromString("14:45:00");
-//		Date endTime3 = getTimeFromString("17:00:00");
-//		movieShow3.setTimingFrom(startTime3);
-//		movieShow3.setTimingTo(endTime3);
-//		movieShowList.add(movieShow3);
-//
-//		audi.setMovieShow(movieShowList);
-//
-//		// add audi to audi list
-//		audiList.add(audi);
-//
-//		theater.setTheaterAudi(audiList);
-//	//	theaterRepository.save(theater);
-//	}
-
 	Logger log = LoggerFactory.getLogger(MovieController.class);
 
 	/**
