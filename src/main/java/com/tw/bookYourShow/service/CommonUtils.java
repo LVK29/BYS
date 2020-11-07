@@ -10,22 +10,48 @@ import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.springframework.stereotype.Component;
 
+/**
+ * Class contains various commonly used general methods
+ * 
+ * @author LVK
+ *
+ */
+/**
+ * @author LVK
+ *
+ */
 @Component
 public class CommonUtils {
 
-
+	/**
+	 * Converts time in string format to Date
+	 * 
+	 * @param strTime
+	 * @return
+	 * @throws ParseException
+	 */
 	public Date getTimeFromString(String strTime) throws ParseException {
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		Date d = dateFormat.parse(strTime);
 		return d;
 	}
 
+	/**
+	 * Converts date in string format to Date
+	 * 
+	 * @param strDate
+	 * @return
+	 * @throws ParseException
+	 */
 	public Date getDateFromString(String strDate) throws ParseException {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date d = dateFormat.parse(strDate);
 		return d;
 	}
 
+	/**
+	 * Converted used to get time from string
+	 */
 	public Converter<String, Date> toStringTime = new AbstractConverter<String, Date>() {
 		@Override
 		public Date convert(String source) {
@@ -40,6 +66,9 @@ public class CommonUtils {
 		}
 	};
 
+	/**
+	 * Converter used to get Date from string
+	 */
 	public Converter<String, Date> toStringDate = new AbstractConverter<String, Date>() {
 		@Override
 		public Date convert(String source) {
@@ -54,16 +83,20 @@ public class CommonUtils {
 		}
 	};
 
+	/**
+	 * Generates random 6 digit alphanumeric String
+	 * 
+	 * @return
+	 */
 	protected String generateRandomAlphaNumericValue() {
 		String allChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-		StringBuilder salt = new StringBuilder();
+		String code = new String();
 		Random rnd = new Random();
-		while (salt.length() < 6) { // length of the random string.
+		while (code.length() < 6) { // length of the random string.
 			int index = (int) (rnd.nextFloat() * allChars.length());
-			salt.append(allChars.charAt(index));
+			code += (allChars.charAt(index));
 		}
-		String saltStr = salt.toString();
-		return saltStr;
+		return code;
 
 	}
 

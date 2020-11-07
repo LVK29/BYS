@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.tw.bookYourShow.controller.MovieController;
 
+/**
+ * Email generation class
+ * 
+ * @author LVK
+ *
+ */
 @Service
 public class EmailService {
 

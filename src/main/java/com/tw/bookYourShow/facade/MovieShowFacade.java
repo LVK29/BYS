@@ -21,6 +21,13 @@ import com.tw.bookYourShow.service.CommonUtils;
 import com.tw.bookYourShow.service.MovieShowService;
 import com.tw.bookYourShow.service.ShowSeatService;
 
+/**
+ * Facade layer for converting MovieShow to MovieShowDTO and vice versa for
+ * various CRUD api calls
+ * 
+ * @author LVK
+ *
+ */
 @Component
 public class MovieShowFacade {
 
@@ -45,17 +52,6 @@ public class MovieShowFacade {
 		movieShowService.createMovieShow(movieShow, movieShowDTO.getMovieId(), audiId);
 
 	}
-
-//	public void updateMovieShow(MovieShowDTO movieShowDTO, int movieShowId, int theaterAudiId) {
-//		MovieShow movieShow = convertToMovieShowEntity(movieShowDTO);
-//		//applyPatchToCustomer(patch, customer);
-//		try {
-//			movieShowService.updateMovieShow(movieShow, movieShowId,theaterAudiId);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
 
 	public MovieShowDTO getMovieShow(int movieShowId) {
 

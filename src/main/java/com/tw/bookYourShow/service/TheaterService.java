@@ -16,6 +16,10 @@ import com.tw.bookYourShow.model.Theater;
 import com.tw.bookYourShow.repository.TheaterAudiRepository;
 import com.tw.bookYourShow.repository.TheaterRepository;
 
+/**
+ * @author LVK
+ *
+ */
 @Service
 public class TheaterService {
 
@@ -27,12 +31,23 @@ public class TheaterService {
 	@Autowired
 	TheaterAudiRepository theaterAudiRepository;
 
+	/**
+	 * Creates theater entity
+	 * 
+	 * @param theater
+	 */
 	public void createTheater(Theater theater) {
 
 		theaterRepository.save(theater);
 		log.info("Theater saved successfully with id" + theater.getId());
 	}
 
+	/**
+	 * Gets theater based on theater Id
+	 * 
+	 * @param theaterId
+	 * @return
+	 */
 	public Theater getTheater(int theaterId) {
 		Optional<Theater> theater = theaterRepository.findById(theaterId);
 		if (theater.isEmpty()) {
@@ -41,12 +56,23 @@ public class TheaterService {
 		return theater.get();
 	}
 
+	/**
+	 * gets all theaters
+	 * 
+	 * @return
+	 */
 	public List<Theater> getAllTheaters() {
 		List<Theater> theaters = new ArrayList<>();
 		theaterRepository.findAll().forEach(theaters::add);
 		return theaters;
 	}
 
+	/**
+	 * updates theater entity
+	 * 
+	 * @param updatedTheater
+	 * @param theaterId
+	 */
 	public void updateTheater(Theater updatedTheater, int theaterId) {
 		Theater theater = getTheater(theaterId);
 		theater.setAddress(updatedTheater.getAddress());
@@ -55,6 +81,11 @@ public class TheaterService {
 		theaterRepository.save(theater);
 	}
 
+	/**
+	 * deletes theater entity , granted that theater has no audis present
+	 * 
+	 * @param theaterId
+	 */
 	public void deleteTheater(int theaterId) {
 		Theater theater = getTheater(theaterId);
 		if (!theater.getTheaterAudis().isEmpty()) {
@@ -65,6 +96,9 @@ public class TheaterService {
 
 	}
 
+	/**
+	 * @return
+	 */
 	public List<Theater> getAllTheatersForCustomer() {
 
 		return theaterRepository.getAllTheatersForCustomer();

@@ -20,6 +20,12 @@ import com.tw.bookYourShow.repository.MovieRepository;
 import com.tw.bookYourShow.repository.TheaterAudiRepository;
 import com.tw.bookYourShow.repository.TheaterRepository;
 
+/**
+ * Controller having API methods related to User Entity
+ * 
+ * @author LVK
+ *
+ */
 @RestController
 public class MyUserController {
 
@@ -28,16 +34,33 @@ public class MyUserController {
 	@Autowired
 	BYSUserFacade bysUserFacade;
 
+	/**
+	 * Gets the user based on the emailId for from the auth token
+	 * 
+	 * @param auth
+	 * @return
+	 */
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public BYSUserDTO getUser(Principal auth) {
 		return bysUserFacade.getBYSUser(auth.getName());
 	}
 
+	/**
+	 * Updates the userEntity based on the user email
+	 * 
+	 * @param updatedUserDTO
+	 * @param auth
+	 */
 	@RequestMapping(value = "/user", method = RequestMethod.PUT)
 	public void updateUser(@RequestBody BYSUserDTO updatedUserDTO, Principal auth) {
 		bysUserFacade.updateBYSUser(updatedUserDTO, auth.getName());
 	}
 
+	/**
+	 * Performs soft delete of the user entity
+	 * 
+	 * @param auth
+	 */
 	@RequestMapping(value = "/user", method = RequestMethod.DELETE)
 	public void deleteUser(Principal auth) {
 		bysUserFacade.deleteBYSUser(auth.getName());

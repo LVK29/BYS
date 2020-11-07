@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tw.bookYourShow.dto.BookingDTO;
 import com.tw.bookYourShow.facade.BookingFacade;
-import com.tw.bookYourShow.repository.BYSUserRepository;
-import com.tw.bookYourShow.repository.BookingRepository;
-import com.tw.bookYourShow.repository.MovieRepository;
-import com.tw.bookYourShow.repository.ShowSeatRepository;
-import com.tw.bookYourShow.service.BYSUserService;
 
-//TODO
+/**
+ * @author LVK
+ *
+ *         Controller for booking related API
+ */
 @RestController
 public class BookingController {
 
@@ -28,24 +27,47 @@ public class BookingController {
 
 	Logger log = LoggerFactory.getLogger(BookingController.class);
 
+	/**
+	 * Controller method that creates booking of one or more showSeats
+	 * 
+	 * @param bookingDto
+	 * @param auth
+	 */
 	@RequestMapping(value = "/booking", method = RequestMethod.POST)
 	public void createBooking(@RequestBody BookingDTO bookingDto, Principal auth) {
 		bookingFacade.createBooking(bookingDto.getShowSeatIds(), auth.getName());
 
 	}
 
+	/**
+	 * Method returns bookingDTO for given bookingId
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/booking/{id}", method = RequestMethod.GET)
 	public BookingDTO getBooking(@PathVariable int id) {
 		return bookingFacade.getBooking(id);
 
 	}
 
+	/**
+	 * Method deletes booking for given bookingId
+	 * 
+	 * @param id
+	 */
 	@RequestMapping(value = "/booking/{id}", method = RequestMethod.DELETE)
 	public void deleteBooking(@PathVariable int id) {
 		bookingFacade.deleteBooking(id);
 
 	}
 
+	/**
+	 * Method used by admin to confirm that the customer has paid bookingPrice
+	 * before watching show
+	 * 
+	 * @param id
+	 */
 	@RequestMapping(value = "/admin/booking/confirmPayment/{id}", method = RequestMethod.PUT)
 	public void confirmBookingPayment(@PathVariable int id) {
 		bookingFacade.confirmBookingPayment(id);

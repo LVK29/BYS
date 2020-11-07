@@ -26,10 +26,7 @@ public class TheaterAudi {
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval = true, mappedBy = "theaterAudi")
 	private List<MovieShow> movieShows = new ArrayList<>();
 
-	// (cascade = {
-	// CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH
-	// })
-	// @JoinColumn(name = "theater_id")
+
 	@ManyToOne
 	private Theater theater;
 
@@ -54,10 +51,6 @@ public class TheaterAudi {
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getAudiName() {

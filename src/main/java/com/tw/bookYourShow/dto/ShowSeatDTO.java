@@ -7,9 +7,6 @@ import com.sun.istack.Nullable;
 @JsonInclude(value = Include.NON_NULL)
 public class ShowSeatDTO {
 	private int id;
-	// private Booking booking;
-
-	// private MovieShowDTO show;
 	private String showStatus;
 	private int audiId;
 	private int audiSeatId;
@@ -17,8 +14,7 @@ public class ShowSeatDTO {
 	private int movieShowId;
 	@Nullable
 	private String showDate;
-	// private String showTime;
-
+	
 	public ShowSeatDTO() {
 
 	}
@@ -45,10 +41,7 @@ public class ShowSeatDTO {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	 
 	public String getShowStatus() {
 		return showStatus;
 	}

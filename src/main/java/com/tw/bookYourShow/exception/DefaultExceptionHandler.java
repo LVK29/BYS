@@ -21,9 +21,6 @@ import com.tw.bookYourShow.model.ErrorMessage;
 public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
 	Logger log = LoggerFactory.getLogger(DefaultExceptionHandler.class);
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -8891959764862530715L;
 
 	@ExceptionHandler(BYSException.class)

@@ -22,6 +22,12 @@ import com.tw.bookYourShow.repository.ShowSeatRepository;
 import com.tw.bookYourShow.repository.TheaterAudiRepository;
 import com.tw.bookYourShow.repository.TheaterRepository;
 
+/**
+ * Class contains business logic related to MovieShow
+ * 
+ * @author LVK
+ *
+ */
 @Service
 public class MovieShowService {
 
@@ -42,6 +48,14 @@ public class MovieShowService {
 	@Autowired
 	ShowSeatRepository showSeatRepository;
 
+	/**
+	 * 
+	 * Method creates movie show for movieId, and audiId specified
+	 * 
+	 * @param movieShow
+	 * @param movieId
+	 * @param audiId
+	 */
 	public void createMovieShow(MovieShow movieShow, int movieId, int audiId) {
 		int exisitingMovieShowsAtTimeSlot = getNumberOfMovieShowForTimeSlotDate(movieShow.getTimingFrom(),
 				movieShow.getTimingTo(), audiId);
@@ -60,12 +74,26 @@ public class MovieShowService {
 		movieShowRepository.save(movieShow);
 	}
 
+	/**
+	 * Method gets number of movieShows for given time slot
+	 * 
+	 * @param timingFrom
+	 * @param timingTo
+	 * @param audiId
+	 * @return
+	 */
 	public int getNumberOfMovieShowForTimeSlotDate(Date timingFrom, Date timingTo, int audiId) {
 
 		List<MovieShow> movieShows = movieShowRepository.getMovieShowsBetweenDates(timingFrom, timingFrom, audiId);
 		return movieShows.size();
 	}
 
+	/**
+	 * Method gets movieShow based on its id
+	 * 
+	 * @param movieShowId
+	 * @return
+	 */
 	public MovieShow getMovieShow(int movieShowId) {
 		Optional<MovieShow> movieShow = movieShowRepository.findById(movieShowId);
 		if (movieShow.isEmpty()) {
@@ -75,13 +103,21 @@ public class MovieShowService {
 		return movieShow.get();
 	}
 
+	/**
+	 * Method is used to delete a movieShow, granted that there are no bookings for
+	 * that show and removed its references in other entities as well
+	 * 
+	 * @param audiId
+	 * @param movieShowId
+	 */
 	public void deleteMovieShow(int audiId, int movieShowId) {
 		// get movieShow's showSeat where booking is not null
-		Date today = new Date();
-		List<ShowSeat> showSeats = showSeatRepository.getBookedShowSeatsForMovieShow(movieShowId, today);
+		Date currentDate = new Date();
+		// if shows are booked for movieShow, you cant delete it
+		List<ShowSeat> showSeats = showSeatRepository.getBookedShowSeatsForMovieShow(movieShowId, currentDate);
 		if (showSeats.size() > 0) {
 			throw new BYSException(
-					"There are showSeats booked for the movie you are deleting you cant delete this now");
+					"There are showSeats booked for the movie show that you are deleting you cant delete this now");
 
 		}
 		try {

@@ -22,6 +22,12 @@ import com.tw.bookYourShow.repository.BookingRepository;
 import com.tw.bookYourShow.repository.MovieRepository;
 import com.tw.bookYourShow.repository.ShowSeatRepository;
 
+/**
+ * Class deals with methods related to Booking Business logic
+ * 
+ * @author LVK
+ *
+ */
 @Service
 public class BookingService {
 
@@ -39,6 +45,12 @@ public class BookingService {
 	@Autowired
 	EmailService emailService;
 
+	/**
+	 * Marks the showSeat passed as BOOKED and creates booking for customer
+	 * 
+	 * @param bookingShowSeatIds
+	 * @param userEmail
+	 */
 	public void createBooking(List<Integer> bookingShowSeatIds, String userEmail) {
 
 		Booking booking = new Booking();
@@ -59,27 +71,30 @@ public class BookingService {
 
 		bookingRepository.save(booking);
 		log.info(booking.getBookedBy().getEmail() + " created booking with bookingId " + booking.getId());
-//SENDING MAIL TO CUSOTOMER ABOUT BOOKING DETAILS WOULD BE NICE TO HAVE
+//Future scope: SENDING MAIL TO CUSOTOMER ABOUT BOOKING DETAILS WOULD BE NICE TO HAVE
 
-//		String emailSubject = "Book Your Show: Booking Seats";
-//		String emailBody = "Following are the booking details: " + System.lineSeparator() + "Booking is"
-//				+ booking.getId() + System.lineSeparator() + "Movie name"
-//				+ booking.getShowSeats().get(0).getMovieShow().getMovie().getName() + System.lineSeparator() + "Seat Id"
-//				+ booking.getShowSeats() + System.lineSeparator() + "Total price" + booking.getTotalPrice();
-//		
-//		String emailBody = "Following are the booking seatId: ";
-//		emailService.sendMail("lvkartikeyan@gmail.com", emailSubject, emailBody);
 	}
 
+	/**
+	 * Gets the booking based on the id passed
+	 * 
+	 * @param bookingId
+	 * @return
+	 */
 	public Booking getBookingById(int bookingId) {
 		Optional<Booking> booking = bookingRepository.findById(bookingId);
 		if (booking.isEmpty()) {
-			 
+
 			throw new BYSException("BookingId " + bookingId + " not found");
 		}
 		return booking.get();
 	}
 
+	/**
+	 * Marks the booking's showseats as available and deletes the booking
+	 * 
+	 * @param bookingId
+	 */
 	public void deleteBooking(int bookingId) {
 		Booking booking = getBookingById(bookingId);
 		List<ShowSeat> showSeats = booking.getShowSeats();
@@ -96,6 +111,11 @@ public class BookingService {
 		log.info("Deleted booking : " + bookingId);
 	}
 
+	/**
+	 * Method marks the booking as paid by the admin
+	 * 
+	 * @param bookingId
+	 */
 	public void confirmBookingPayment(int bookingId) {
 		Booking booking = getBookingById(bookingId);
 		booking.setPaid(true);

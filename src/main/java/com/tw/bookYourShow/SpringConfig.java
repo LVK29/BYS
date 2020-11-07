@@ -15,6 +15,5 @@ public class SpringConfig {
 		modelMapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
 		return modelMapper;
 	}
-	
-	
+
 }

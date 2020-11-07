@@ -32,7 +32,7 @@ public class ShowSeat {
 	@ManyToOne
 	private AudiSeat audiSeat;
 
-	@ManyToOne//(cascade = { CascadeType. })
+	@ManyToOne
 	private Booking booking;
 
 	@ManyToOne(cascade = { CascadeType.ALL })
@@ -66,9 +66,7 @@ public class ShowSeat {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+ 
 
 	public ShowSeatStatusType getShowStatus() {
 		return showStatus;

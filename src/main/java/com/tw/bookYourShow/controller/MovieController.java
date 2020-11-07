@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tw.bookYourShow.dto.MovieDTO;
 import com.tw.bookYourShow.facade.MovieFacade;
 
+/**
+ * Controller used by ADMINs for performing CRUD operations on Movie Entity
+ * 
+ * @author LVK
+ *
+ */
 @RestController
 public class MovieController {
 
@@ -76,23 +82,45 @@ public class MovieController {
 
 	Logger log = LoggerFactory.getLogger(MovieController.class);
 
+	/**
+	 * Creates movie based on MovieDTO passed
+	 * 
+	 * @param movieDTO
+	 */
 	@RequestMapping(value = "/admin/movie", method = RequestMethod.POST)
 	public void createMovie(@RequestBody MovieDTO movieDTO) {
 		movieFacade.createMovie(movieDTO);
 	}
 
+	/**
+	 * Gets the movieDTO for movieId passed
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/admin/movie/{id}", method = RequestMethod.GET)
 	public MovieDTO getMovieDetails(@PathVariable int id) {
 		return movieFacade.getMovie(id);
 	}
 
+	/**
+	 * Deletes movie based on the movieId passed
+	 * 
+	 * @param id
+	 */
 	@RequestMapping(value = "/admin/movie/{id}", method = RequestMethod.DELETE)
 	public void deleteMovieDetails(@PathVariable int id) {
 		movieFacade.deleteMovie(id);
 	}
 
+	/**
+	 * Updates the movie based on MovieDTO passed
+	 * 
+	 * @param movieDTO
+	 * @param id
+	 */
 	@RequestMapping(value = "/admin/movie/{id}", method = RequestMethod.PUT)
-	public void createMovie(@RequestBody MovieDTO movieDTO, @PathVariable int id) {
+	public void updateMovie(@RequestBody MovieDTO movieDTO, @PathVariable int id) {
 
 		movieFacade.updateMovie(movieDTO, id);
 	}

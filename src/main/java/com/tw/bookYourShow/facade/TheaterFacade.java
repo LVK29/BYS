@@ -16,12 +16,18 @@ import com.tw.bookYourShow.model.Theater;
 import com.tw.bookYourShow.model.TheaterAudi;
 import com.tw.bookYourShow.service.TheaterService;
 
+/**
+ * Facade layer for converting Theater to TheaterFacadeDTO and vice versa for
+ * various CRUD api calls
+ * 
+ * @author LVK
+ *
+ */
 @Component
 public class TheaterFacade {
 
 	Logger log = LoggerFactory.getLogger(MovieController.class);
 
-	
 	@Autowired
 	public ModelMapper modelMapper;
 

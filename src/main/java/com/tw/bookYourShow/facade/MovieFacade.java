@@ -16,6 +16,13 @@ import com.tw.bookYourShow.model.Movie;
 import com.tw.bookYourShow.model.MovieShow;
 import com.tw.bookYourShow.service.MovieService;
 
+/**
+ * Facade layer for converting Movie to MovieDTO and vice versa for various CRUD
+ * api calls
+ * 
+ * @author LVK
+ *
+ */
 @Component
 public class MovieFacade {
 

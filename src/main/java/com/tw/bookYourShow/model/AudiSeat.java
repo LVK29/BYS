@@ -54,10 +54,7 @@ public class AudiSeat {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
+ 
 	public String getRowNumber() {
 		return rowNumber;
 	}

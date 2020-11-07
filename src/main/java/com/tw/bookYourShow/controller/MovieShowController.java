@@ -18,6 +18,12 @@ import com.tw.bookYourShow.facade.MovieShowFacade;
 import com.tw.bookYourShow.model.ShowSeat;
 import com.tw.bookYourShow.repository.ShowSeatRepository;
 
+/**
+ * Controller used for performing various CRUD operations on MovieShow Entity
+ * 
+ * @author LVK
+ *
+ */
 @RestController
 public class MovieShowController {
 
@@ -28,6 +34,13 @@ public class MovieShowController {
 	@Autowired
 	MovieShowFacade movieShowFacade;
 
+	/**
+	 * Creates MovieShow and assigns it to the theaterAudi id passed
+	 * 
+	 * @param theaterAudiId
+	 * @param movieShowDTO
+	 * @throws ParseException
+	 */
 	@RequestMapping(value = "/admin/theaterAudi/{theaterAudiId}/movieShow/", method = RequestMethod.POST)
 	public void createMovieShow(@PathVariable int theaterAudiId, @RequestBody MovieShowDTO movieShowDTO)
 			throws ParseException {
@@ -36,16 +49,33 @@ public class MovieShowController {
 
 	}
 
+	/**
+	 * Gets the movieShow for the movieShowId passed
+	 * 
+	 * @param movieShowId
+	 * @return
+	 */
 	@RequestMapping(value = "/admin/theaterAudi/{theaterAudiId}/movieShow/{movieShowId}", method = RequestMethod.GET)
-	public MovieShowDTO getMovieShow(@PathVariable int theaterAudiId, @PathVariable int movieShowId) {
+	public MovieShowDTO getMovieShow(@PathVariable int movieShowId) {
 		return movieShowFacade.getMovieShow(movieShowId);
 	}
 
+	/**
+	 * Deletes the movieShow from theaterAudi id specified
+	 * 
+	 * @param theaterAudiId
+	 * @param movieShowId
+	 */
 	@RequestMapping(value = "/admin/theaterAudi/{theaterAudiId}/movieShow/{movieShowId}", method = RequestMethod.DELETE)
 	public void deleteMovieShow(@PathVariable int theaterAudiId, @PathVariable int movieShowId) {
 		movieShowFacade.deleteMovieShow(theaterAudiId, movieShowId);
 	}
 
+	/**
+	 * Gets all the Movie Shows that have available showSeats
+	 * 
+	 * @return
+	 */
 	@RequestMapping(value = "/allAvailableMovieShows", method = RequestMethod.GET)
 	public List<MovieShowDTO> getAllAvailableMovieShows() {
 		return movieShowFacade.getAllAvailableMovieShows();

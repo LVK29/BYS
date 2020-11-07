@@ -16,6 +16,12 @@ import com.tw.bookYourShow.repository.MovieShowRepository;
 import com.tw.bookYourShow.repository.TheaterAudiRepository;
 import com.tw.bookYourShow.repository.TheaterRepository;
 
+/**
+ * Service class contains business logic for related to TheaterAudi entity
+ * 
+ * @author LVK
+ *
+ */
 @Service
 public class TheaterAudiService {
 
@@ -30,6 +36,11 @@ public class TheaterAudiService {
 	@Autowired
 	MovieShowRepository movieShowRepository;
 
+	/**
+	 * Method creates theater audi
+	 * 
+	 * @param theaterAudi
+	 */
 	public void createTheaterAudi(TheaterAudi theaterAudi) {
 
 		theaterAudi.getAudiSeats().forEach((audiSeat) -> audiSeat.setTheaterAudi(theaterAudi));
@@ -38,6 +49,12 @@ public class TheaterAudiService {
 
 	}
 
+	/**
+	 * Gets theaterAudi and its seats based on audiId passed
+	 * 
+	 * @param theaterAudiId
+	 * @return
+	 */
 	public TheaterAudi getTheaterAudi(int theaterAudiId) {
 		Optional<TheaterAudi> theaterAudi = theaterAudiRepository.findById(theaterAudiId);
 		if (theaterAudi.isEmpty()) {
@@ -46,6 +63,12 @@ public class TheaterAudiService {
 		return theaterAudi.get();
 	}
 
+	/**
+	 * updates theaterAudi name
+	 * 
+	 * @param updatedTheaterAudi
+	 * @param theaterAudiId
+	 */
 	public void updateTheaterAudi(TheaterAudi updatedTheaterAudi, int theaterAudiId) {
 		TheaterAudi theaterAudi = getTheaterAudi(theaterAudiId);
 		if (updatedTheaterAudi.getMovieShows().size() > 0 || updatedTheaterAudi.getAudiSeats().size() > 0) {
@@ -57,6 +80,11 @@ public class TheaterAudiService {
 		theaterAudiRepository.save(theaterAudi);
 	}
 
+	/**
+	 * method deletes theateraudi granted that its movieShows are deleted
+	 * 
+	 * @param theaterAudiId
+	 */
 	public void deleteTheaterAudi(int theaterAudiId) {
 		TheaterAudi theaterAudi = getTheaterAudi(theaterAudiId);
 		// if theater audi's have movieshows then throw

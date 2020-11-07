@@ -14,6 +14,11 @@ import com.tw.bookYourShow.exception.BYSException;
 import com.tw.bookYourShow.model.BYSUser;
 import com.tw.bookYourShow.repository.BYSUserRepository;
 
+/**
+ * @author LVK
+ *
+ */
+
 @Service
 public class BYSUserService {
 
@@ -23,11 +28,16 @@ public class BYSUserService {
 	BYSUserRepository bysUserRepository;
 	@Autowired
 	EmailService emailService;
-	
 
 	@Autowired
 	CommonUtils commonUtils;
 
+	/**
+	 * Creates inactive User based on registration details and sends mail with
+	 * verification code
+	 * 
+	 * @param user
+	 */
 	@Transactional
 	public void createBYSUser(BYSUser user) {
 
@@ -41,12 +51,18 @@ public class BYSUserService {
 			log.info("Sending authentication mail to " + user.getEmail());
 
 		} catch (Exception e) {
-			 
+
 			throw new BYSException("User registration failed");
 		}
 
 	}
 
+	/**
+	 * Marks the user as active based on sending a valid code
+	 * 
+	 * @param userEmail
+	 * @param activationCode
+	 */
 	public void activateBYSUser(String userEmail, String activationCode) {
 		BYSUser user = getBYSUserByEmail(userEmail);
 		if (!user.isActive() && user.getActivationCode().equals(activationCode)) {
@@ -60,6 +76,12 @@ public class BYSUserService {
 		}
 	}
 
+	/**
+	 * Gets user entity based on id passed
+	 * 
+	 * @param userId
+	 * @return
+	 */
 	public BYSUser getBYSUser(int userId) {
 
 		Optional<BYSUser> user = bysUserRepository.findById(userId);
@@ -70,16 +92,28 @@ public class BYSUserService {
 		return user.get();
 	}
 
+	/**
+	 * Gets user based on user email id
+	 * 
+	 * @param userEmail
+	 * @return
+	 */
 	public BYSUser getBYSUserByEmail(String userEmail) {
 
 		Optional<BYSUser> user = bysUserRepository.findByEmail(userEmail);
 		if (user.isEmpty()) {
-			 
+
 			throw new BYSException("User with email " + userEmail + " not found");
 		}
 		return user.get();
 	}
 
+	/**
+	 * Updates user details
+	 * 
+	 * @param updatedBYSUser
+	 * @param userEmail
+	 */
 	public void updateBYSUser(BYSUser updatedBYSUser, String userEmail) {
 		BYSUser bysUser = getBYSUserByEmail(userEmail);
 		bysUser.setDateOfBirth(updatedBYSUser.getDateOfBirth());
@@ -89,6 +123,11 @@ public class BYSUserService {
 		log.debug("User" + userEmail + " updated successfully");
 	}
 
+	/**
+	 * marks user as inactive - therefore soft deleting
+	 * 
+	 * @param userEmail
+	 */
 	public void deleteBYSUser(String userEmail) {
 		// perform soft delete
 		BYSUser bysUser = getBYSUserByEmail(userEmail);

@@ -21,7 +21,12 @@ import com.tw.bookYourShow.repository.TheaterAudiRepository;
 import com.tw.bookYourShow.repository.TheaterRepository;
 import com.tw.bookYourShow.service.CommonUtils;
 
-//TODO
+/**
+ * Controller used for creating showSeats for a audi and movieShow
+ * 
+ * @author LVK
+ *
+ */
 @RestController
 public class ShowSeatController {
 
@@ -30,7 +35,14 @@ public class ShowSeatController {
 	@Autowired
 	ShowSeatFacade showSeatFacade;
 
-	// create movie schedule
+	/**
+	 * Creates showSeat with same price for all the audiSeats of audi specified by
+	 * audiId
+	 * 
+	 * @param theaterAudiId
+	 * @param showSeatdto
+	 * @throws ParseException
+	 */
 	@RequestMapping(value = "/admin/theaterAudi/{theaterAudiId}/audiSeat/{audiSeatId}/showSeat", method = RequestMethod.POST)
 	public void createShowSeat(@PathVariable int theaterAudiId, @RequestBody ShowSeatDTO showSeatdto)
 			throws ParseException {
@@ -39,6 +51,12 @@ public class ShowSeatController {
 
 	}
 
+	/**
+	 * Gets showSeat data based on showSeatId
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/admin/theaterAudi/{theaterAudiId}/audiSeat/{audiSeatId}/showSeat/{id}", method = RequestMethod.GET)
 	public ShowSeatDTO getShowSeat(@PathVariable int id) {
 		return showSeatFacade.getShowSeat(id);
@@ -55,6 +73,13 @@ public class ShowSeatController {
 
 	}
 
+	/**
+	 * Can update ShowSeat data like price and availability (can create unique
+	 * prices after creating showSeats)
+	 * 
+	 * @param id
+	 * @param updatedShowSeatDto
+	 */
 	@RequestMapping(value = "/admin/theaterAudi/{theaterAudiId}/audiSeat/{audiSeatId}/showSeat/{id}", method = RequestMethod.PUT)
 	public void updateShowSeat(@PathVariable int id, @RequestBody ShowSeatDTO updatedShowSeatDto) {
 		showSeatFacade.updateShowSeat(updatedShowSeatDto, id);
@@ -65,6 +90,11 @@ public class ShowSeatController {
 //		bookingRepository.save(booking);
 	}
 
+	/**
+	 * Can delete a showSeat, (likely used in case of damaged seat)
+	 * 
+	 * @param id
+	 */
 	@RequestMapping(value = "/admin/theaterAudi/{theaterAudiId}/audiSeat/{audiSeatId}/showSeat/{id}", method = RequestMethod.DELETE)
 	public void deleteShowSeat(@PathVariable int id) {
 		showSeatFacade.deleteShowSeat(id);
