@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(value = Include.NON_NULL)
 public class AudiSeatDTO {
 
-	// private List<ShowSeatDTO> showSeats = new ArrayList<>();
 	private int id;
 	private String rowNumber;
 
@@ -30,10 +29,6 @@ public class AudiSeatDTO {
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getRowNumber() {

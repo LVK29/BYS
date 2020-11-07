@@ -15,6 +15,11 @@ import com.tw.bookYourShow.model.TheaterAudi;
 import com.tw.bookYourShow.service.TheaterAudiService;
 import com.tw.bookYourShow.service.TheaterService;
 
+/**
+ *  Facade layer for converting TheaterAudi to TheaterAudiDTO and vice versa  for various CRUD api calls
+ * @author LVK
+ *
+ */
 @Component
 public class TheaterAudiFacade {
 

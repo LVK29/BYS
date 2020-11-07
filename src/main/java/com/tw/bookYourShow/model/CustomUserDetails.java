@@ -23,7 +23,7 @@ public class CustomUserDetails implements UserDetails {
 
 		this.userName = user.getEmail();
 		this.password = user.getSaltedHashedPassword();
-		this.active = user.isActive();// user.isActive();
+		this.active = user.isActive();
 
 		this.authorities = authority;
 		this.role = ROLE_PREFIX + user.getUserType().toString();

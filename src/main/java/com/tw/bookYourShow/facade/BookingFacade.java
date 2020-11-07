@@ -15,6 +15,12 @@ import com.tw.bookYourShow.model.Booking;
 import com.tw.bookYourShow.service.BookingService;
 import com.tw.bookYourShow.service.CommonUtils;
 
+/**
+ * Facade layer for converting Booking to BookingDTO for various CRUD api calls
+ * 
+ * @author LVK
+ *
+ */
 @Component
 public class BookingFacade {
 

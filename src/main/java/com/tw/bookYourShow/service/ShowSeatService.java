@@ -22,7 +22,12 @@ import com.tw.bookYourShow.repository.ShowSeatRepository;
 import com.tw.bookYourShow.repository.TheaterAudiRepository;
 import com.tw.bookYourShow.repository.TheaterRepository;
 
-//TODO
+/**
+ * Service class consists of methods related to ShowSeat entitiy
+ * 
+ * @author LVK
+ *
+ */
 @Service
 public class ShowSeatService {
 
@@ -43,6 +48,13 @@ public class ShowSeatService {
 	@Autowired
 	ShowSeatRepository showSeatRepository;
 
+	/**
+	 * ShowSeat is created for audiId and movieShow
+	 * 
+	 * @param showSeat
+	 * @param audiId
+	 * @param movieShowId
+	 */
 	public void createShowSeat(ShowSeat showSeat, int audiId, int movieShowId) {
 		try {
 			MovieShow movieShow = movieShowRepository.findById(movieShowId).get();
@@ -65,6 +77,12 @@ public class ShowSeatService {
 		}
 	}
 
+	/**
+	 * Gets ShowSeat based on its id
+	 * 
+	 * @param showSeatId
+	 * @return
+	 */
 	public ShowSeat getShowSeat(int showSeatId) {
 		Optional<ShowSeat> showSeats = showSeatRepository.findById(showSeatId);
 		if (showSeats.isEmpty()) {
@@ -73,6 +91,12 @@ public class ShowSeatService {
 		return showSeats.get();
 	}
 
+	/**
+	 * Method updates a particular showseat price and its status
+	 * 
+	 * @param updatedShowSeat
+	 * @param showSeatId
+	 */
 	public void updateShowSeat(ShowSeat updatedShowSeat, int showSeatId) {
 		ShowSeat showSeat = getShowSeat(showSeatId);
 		showSeat.setPrice(updatedShowSeat.getPrice());
@@ -81,6 +105,11 @@ public class ShowSeatService {
 		log.info("Updated ShowSeat with id " + showSeatId);
 	}
 
+	/**
+	 * Deletes showSeat if its not booked
+	 * 
+	 * @param showSeatId
+	 */
 	public void deleteShowSeat(int showSeatId) {
 		ShowSeat showSeat = getShowSeat(showSeatId);
 		if (showSeat.getBooking() != null) {
@@ -92,9 +121,14 @@ public class ShowSeatService {
 		log.info("Deleted showSeat with id" + showSeatId);
 	}
 
+	/**
+	 * Gets all available ShowSeats from currentday onwards
+	 * 
+	 * @return
+	 */
 	public List<ShowSeat> getAllAvailableShowSeats() {
-		Date today = new Date();
-		return showSeatRepository.getAvailableShowSeatsForMovieShow(today);
+		Date currentDate = new Date();
+		return showSeatRepository.getAvailableShowSeatsForMovieShow(currentDate);
 
 	}
 }

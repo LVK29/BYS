@@ -14,6 +14,13 @@ import com.tw.bookYourShow.model.BYSUser;
 import com.tw.bookYourShow.model.Booking;
 import com.tw.bookYourShow.service.BYSUserService;
 
+/**
+ * Facade layer for converting BYSUser to BYSUserDTO and vice versa for various
+ * CRUD api calls
+ * 
+ * @author LVK
+ *
+ */
 @Component
 public class BYSUserFacade {
 

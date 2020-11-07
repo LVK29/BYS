@@ -18,13 +18,18 @@ import com.tw.bookYourShow.model.TheaterAudi;
 import com.tw.bookYourShow.service.CommonUtils;
 import com.tw.bookYourShow.service.ShowSeatService;
 
-//TODO
+/**
+ * Facade layer for converting ShowSeat to ShowSeatDTO and vice versa for
+ * various CRUD api calls
+ * 
+ * @author LVK
+ *
+ */
 @Component
 public class ShowSeatFacade {
 
 	Logger log = LoggerFactory.getLogger(ShowSeatFacade.class);
 
-	
 	@Autowired
 	ShowSeatService showSeatService;
 

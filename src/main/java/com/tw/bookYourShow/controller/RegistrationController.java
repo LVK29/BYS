@@ -20,6 +20,12 @@ import com.tw.bookYourShow.repository.TheaterAudiRepository;
 import com.tw.bookYourShow.repository.TheaterRepository;
 import com.tw.bookYourShow.service.EmailService;
 
+/**
+ * Controller used for registration and activation of users
+ * 
+ * @author LVK
+ *
+ */
 @RestController
 public class RegistrationController {
 
@@ -28,6 +34,11 @@ public class RegistrationController {
 	@Autowired
 	BYSUserFacade bysUserFacade;
 
+	/**
+	 * Used to create an inactive userEntity based on customer's registration data
+	 * 
+	 * @param userDto
+	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public void createUser(@RequestBody BYSUserDTO userDto) {
 
@@ -35,6 +46,13 @@ public class RegistrationController {
 
 	}
 
+	/**
+	 * Used to verify the registered account and mark it active based on the
+	 * verification code
+	 * 
+	 * @param activationCode
+	 * @param userEmail
+	 */
 	@RequestMapping(value = "/activateUser", method = RequestMethod.PUT)
 	public void createUser(@RequestHeader String activationCode, @RequestHeader String userEmail) {
 

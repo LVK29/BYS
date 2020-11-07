@@ -51,10 +51,7 @@ public class BookingDTO {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	 
 	public String getBookingTime() {
 		return bookingTime;
 	}
