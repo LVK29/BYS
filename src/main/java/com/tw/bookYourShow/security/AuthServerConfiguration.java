@@ -61,6 +61,12 @@ public class AuthServerConfiguration extends AuthorizationServerConfigurerAdapte
 //	public TokenStore tokenStore() {
 //		return new InMemoryTokenStore();
 //	}
+
+	/*
+	 * we are using JDBC tokenStore, and if the SQL queries to create oauthTable
+	 * arent executed, this will fail. Alternatively you can use the
+	 * InMemoryTokenStore method to bypass this
+	 */
 	@Bean
 	public TokenStore tokenStore() {
 		return new JdbcTokenStore(dataSource);
